@@ -1,7 +1,7 @@
 # Runtime env: DATABASE_URL (required, validated at startup).
 # Behind a proxy set ORIGIN (e.g. https://app.example.com); if the proxy
-# terminates TLS also set PROTOCOL_HEADER / HOST_HEADER / PORT_HEADER
-# (and ADDRESS_HEADER / XFF_DEPTH for client IPs). See @sveltejs/adapter-bun.
+# terminates TLS, PROTOCOL_HEADER / HOST_HEADER / PORT_HEADER can be set
+# instead of ORIGIN (and ADDRESS_HEADER / XFF_DEPTH for client IPs). See @sveltejs/adapter-bun.
 # Build needs no secrets: config is read lazily at runtime.
 
 FROM oven/bun:1.4.4-alpine AS deps
@@ -25,5 +25,5 @@ COPY drizzle ./drizzle
 USER bun
 EXPOSE 3000
 HEALTHCHECK --interval=30s --timeout=3s --start-period=10s --retries=3 \
-  CMD wget -qO- http://localhost:3000/healthz || exit 1
+  CMD wget -qO- http://127.0.0.1:3000/healthz
 CMD ["bun", "./build"]
