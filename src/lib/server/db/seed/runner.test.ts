@@ -31,8 +31,9 @@ describe('runSeed', () => {
 				},
 				{
 					name: 'b',
-					run: async () => {
+					run: () => {
 						calls.push('b');
+						return Promise.resolve();
 					}
 				}
 			],
@@ -53,9 +54,7 @@ describe('runSeed', () => {
 					},
 					{
 						name: 'boom',
-						run: async () => {
-							throw new Error('boom');
-						}
+						run: () => Promise.reject(new Error('boom'))
 					}
 				],
 				() => {}
