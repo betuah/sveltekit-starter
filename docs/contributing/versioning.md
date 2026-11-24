@@ -1,6 +1,6 @@
 # Versioning
 
-Proyek ini memakai [Semantic Versioning](https://semver.org): `MAJOR.MINOR.PATCH`. Versi tidak diubah tangan. release-please membacanya dari riwayat commit di `main`.
+Proyek ini memakai [Semantic Versioning](https://semver.org): `MAJOR.MINOR.PATCH`. Otomatisasi rilis dengan release-please akan diaktifkan di Fase 7. Sampai saat itu versi di `package.json` dan tag dinaikkan dengan tangan mengikuti aturan di bawah.
 
 ## Dari commit ke versi
 
@@ -44,4 +44,4 @@ Versi seperti `1.2.0-rc.1` dipakai untuk kandidat rilis. Urutannya lebih rendah 
 
 ## Changelog dan tag
 
-release-please membuka PR "release" yang berisi perubahan `CHANGELOG.md` dan kenaikan `version` di `package.json`. Saat PR itu di-merge, ia membuat tag `vX.Y.Z` dan GitHub Release. Entri changelog diambil dari subject commit. Aturan penulisan ada di [commit-convention](commit-convention.md).
+Mulai Fase 7, release-please membuka PR "release" yang berisi perubahan `CHANGELOG.md` dan kenaikan `version` di `package.json`. Saat PR itu di-merge, ia membuat tag `vX.Y.Z` dan GitHub Release. Entri changelog diambil dari subject commit. Sebelum itu `CHANGELOG.md` tidak dibuat otomatis. Aturan penulisan ada di [commit-convention](commit-convention.md).

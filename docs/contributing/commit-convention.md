@@ -1,6 +1,6 @@
 # Konvensi commit
 
-Setelah halaman ini kamu bisa menulis commit yang lolos commitlint dan masuk ke changelog dengan benar. Hook Lefthook (`commit-msg`) menjalankan commitlint dengan `@commitlint/config-conventional` di setiap commit. CI mengecek ulang semua commit di PR.
+Setelah halaman ini kamu bisa menulis commit yang lolos commitlint dan nanti masuk ke changelog dengan benar (otomatis mulai Fase 7). Hook Lefthook (`commit-msg`) menjalankan commitlint dengan `@commitlint/config-conventional` di setiap commit. CI mengecek ulang semua commit di PR.
 
 ## Format
 
