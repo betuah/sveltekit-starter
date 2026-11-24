@@ -5,7 +5,7 @@ pre-commit:
       glob: '*.{ts,js,svelte,json,md,css}'
       run: bunx prettier --check {staged_files}
     eslint:
-      glob: '*.{ts,js,svelte,json,md,css}'
+      glob: '*.{ts,js,svelte}'
       run: bunx eslint {staged_files}
 
 commit-msg:
