@@ -1,0 +1,14 @@
+pre-commit:
+  parallel: true
+  commands:
+    prettier:
+      glob: '*.{ts,js,svelte,json,md,css}'
+      run: bunx prettier --check {staged_files}
+    eslint:
+      glob: '*.{ts,js,svelte,json,md,css}'
+      run: bunx eslint {staged_files}
+
+commit-msg:
+  commands:
+    commitlint:
+      run: bunx commitlint --edit {1}
