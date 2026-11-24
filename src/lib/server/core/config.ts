@@ -12,9 +12,13 @@ export class ConfigError extends Error {}
 export function parseConfig(env: Record<string, string | undefined>): Config {
 	const result = schema.safeParse(env);
 	if (!result.success) {
-		const details = result.error.issues
-			.map((i) => `${String(i.path[0])} (${i.message})`)
-			.join(', ');
+		// One entry per key, so a key with several issues is named once.
+		const byKey = new Map<string, string>();
+		for (const i of result.error.issues) {
+			const key = String(i.path[0] ?? 'env');
+			if (!byKey.has(key)) byKey.set(key, i.message.replace(/\s+/g, ' '));
+		}
+		const details = [...byKey].map(([key, msg]) => `${key} (${msg})`).join(', ');
 		throw new ConfigError(`Invalid environment: ${details}`);
 	}
 	return { nodeEnv: result.data.NODE_ENV, databaseUrl: result.data.DATABASE_URL };

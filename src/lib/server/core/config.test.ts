@@ -18,6 +18,32 @@ describe('parseConfig', () => {
 	it('rejects a non-postgres URL', () => {
 		expect(() => parseConfig({ DATABASE_URL: 'mysql://x' })).toThrow(/DATABASE_URL/);
 	});
+	it('accepts the postgresql: scheme', () => {
+		expect(parseConfig({ DATABASE_URL: 'postgresql://a:b@h/d' }).databaseUrl).toBe(
+			'postgresql://a:b@h/d'
+		);
+	});
+	it('rejects an empty DATABASE_URL', () => {
+		expect(() => parseConfig({ DATABASE_URL: '' })).toThrow(/DATABASE_URL/);
+	});
+	it('rejects an unknown NODE_ENV', () => {
+		expect(() => parseConfig({ NODE_ENV: 'staging', DATABASE_URL: 'postgres://a:b@h/d' })).toThrow(
+			/NODE_ENV/
+		);
+	});
+	it('names every bad key once, on a single line', () => {
+		let message = '';
+		try {
+			parseConfig({ NODE_ENV: 'staging' });
+		} catch (err) {
+			message = (err as Error).message;
+		}
+		expect(message).toMatch(/^Invalid environment: /);
+		expect(message).toContain('NODE_ENV');
+		expect(message).toContain('DATABASE_URL');
+		expect(message).not.toContain('\n');
+		expect(message.match(/DATABASE_URL/g)).toHaveLength(1);
+	});
 });
 
 describe('getConfig', () => {
