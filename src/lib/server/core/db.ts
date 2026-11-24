@@ -10,7 +10,7 @@ export type Db = PostgresJsDatabase<typeof schema>;
 export type Tx = Parameters<Parameters<Db['transaction']>[0]>[0];
 export type Executor = Db | Tx;
 
-export function createDb(url: string): { db: Db; close(): Promise<void> } {
+export function createDb(url: string): { db: Db; close: () => Promise<void> } {
 	const client = postgres(url, { connect_timeout: 2 });
 	return {
 		db: drizzle(client, { schema }),
