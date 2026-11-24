@@ -23,6 +23,7 @@
 		"db:generate": "drizzle-kit generate",
 		"db:migrate": "bun --bun drizzle-kit migrate",
 		"db:studio": "drizzle-kit studio",
+		"db:seed": "bun src/lib/server/db/seed/index.ts",
 		"test:unit": "bun --bun vitest",
 		"test": "bun run test:unit -- --run && bun run test:e2e",
 		"test:e2e": "playwright install && playwright test"
