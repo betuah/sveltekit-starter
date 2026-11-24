@@ -4,6 +4,9 @@ Semua key di `.env.example`. Aplikasi membaca env hanya lewat `src/lib/server/co
 
 | Key | Fungsi | Contoh (`.env.example`) | Wajib kapan |
 | --- | --- | --- | --- |
+| `POSTGRES_PORT` | Port host untuk Postgres di docker compose | `5432` | Kalau port default bentrok. Samakan dengan port di `DATABASE_URL` dan `TEST_DATABASE_URL` |
+| `RUSTFS_PORT` / `RUSTFS_CONSOLE_PORT` | Port host untuk API S3 dan console RustFS | `9000` / `9001` | Kalau bentrok. Samakan dengan `S3_ENDPOINT` |
+| `MAILPIT_SMTP_PORT` / `MAILPIT_UI_PORT` | Port host untuk SMTP dan UI Mailpit | `1025` / `8025` | Kalau bentrok. Samakan dengan `SMTP_PORT` |
 | `DATABASE_URL` | Koneksi PostgreSQL untuk aplikasi, migration, dan seed. Harus berskema `postgres://` atau `postgresql://` | `postgres://app:app@localhost:5432/app` | Selalu. Server menolak start tanpa ini |
 | `TEST_DATABASE_URL` | Database untuk test (`app_test`) | `postgres://app:app@localhost:5432/app_test` | Saat menjalankan test |
 | `S3_ENDPOINT` | Endpoint S3-compatible | `http://localhost:9000` (RustFS) | Saat fitur storage dipakai |

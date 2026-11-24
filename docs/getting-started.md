@@ -36,12 +36,14 @@ Kamu butuh [Bun](https://bun.sh) 1.4 atau lebih baru dan Docker dengan Compose v
 
 ## Service lokal
 
-| Service | URL / port                                          |
-| ------- | --------------------------------------------------- |
-| App     | `http://localhost:5173`                             |
-| Mailpit | UI `http://localhost:8025`, SMTP `localhost:1025`   |
-| RustFS  | S3 `http://localhost:9000`, console `http://localhost:9001` |
-| Postgres | `localhost:5432`, database `app` dan `app_test`    |
+Port di bawah adalah default. Semua bisa diganti lewat `.env` (lihat "Port sudah dipakai").
+
+| Service | URL / port | Variabel port |
+| ------- | ---------- | ------------- |
+| App | `http://localhost:5173` | - |
+| Mailpit | UI `http://localhost:8025`, SMTP `localhost:1025` | `MAILPIT_UI_PORT`, `MAILPIT_SMTP_PORT` |
+| RustFS | S3 `http://localhost:9000`, console `http://localhost:9001` | `RUSTFS_PORT`, `RUSTFS_CONSOLE_PORT` |
+| Postgres | `localhost:5432`, database `app` dan `app_test` | `POSTGRES_PORT` |
 
 Login console RustFS memakai `S3_ACCESS_KEY_ID` dan `S3_SECRET_ACCESS_KEY` dari `.env`. Daftar semua variabel ada di [reference/env.md](reference/env.md).
 
@@ -51,26 +53,31 @@ Login console RustFS memakai `S3_ACCESS_KEY_ID` dan `S3_SECRET_ACCESS_KEY` dari 
 
 ## Kalau gagal
 
-### Port 5432 sudah dipakai
+### Port sudah dipakai
 
-Ada Postgres lain di mesinmu, misalnya container dari proyek lain. Gejalanya: `docker compose up` bilang `port is already allocated`, atau migration jalan ke database yang salah. Cek siapa yang memakai port:
+Ada service lain di mesinmu yang memakai port yang sama, misalnya container Postgres atau Mailpit dari proyek lain. Gejalanya: `docker compose up` bilang `port is already allocated`, atau migration jalan ke database yang salah. Cek siapa yang memakai port:
 
 ```bash
 lsof -i :5432
 docker ps --filter publish=5432
 ```
 
-Ada dua jalan keluar. Hentikan container lain itu (`docker stop <nama>`), atau ganti port di `docker-compose.yml` dan `DATABASE_URL` / `TEST_DATABASE_URL` di `.env`:
-
-```yaml
-ports:
-  - '127.0.0.1:5433:5432'
-```
+Jangan ubah `docker-compose.yml`. Ganti port di `.env`, lalu samakan port di URL yang menunjuk ke service itu:
 
 ```env
+POSTGRES_PORT=5433
+RUSTFS_PORT=9010
+RUSTFS_CONSOLE_PORT=9011
+MAILPIT_SMTP_PORT=1026
+MAILPIT_UI_PORT=8026
+
 DATABASE_URL=postgres://app:app@localhost:5433/app
 TEST_DATABASE_URL=postgres://app:app@localhost:5433/app_test
+S3_ENDPOINT=http://localhost:9010
+SMTP_PORT=1026
 ```
+
+Setelah itu jalankan lagi `docker compose up -d`. Port di dalam container tetap sama, jadi tidak ada yang perlu diubah di kode.
 
 ### `docker compose` bilang variabel tidak di-set
 
