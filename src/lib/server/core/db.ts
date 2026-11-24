@@ -18,6 +18,7 @@ export function createDb(url: string): { db: Db; close: () => Promise<void> } {
 	};
 }
 
+// shortcut: a timed-out query is not cancelled and keeps its pool slot until the server answers; add cancellation if health probes hit a hung DB often.
 export async function checkDb(executor: Executor, timeoutMs = 2000): Promise<boolean> {
 	let timer: ReturnType<typeof setTimeout> | undefined;
 	try {
