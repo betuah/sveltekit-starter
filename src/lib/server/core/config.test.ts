@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { ConfigError, parseConfig } from './config.ts';
+import { ConfigError, getConfig, parseConfig } from './config.ts';
 
 describe('parseConfig', () => {
 	it('parses a valid env', () => {
@@ -17,5 +17,11 @@ describe('parseConfig', () => {
 	});
 	it('rejects a non-postgres URL', () => {
 		expect(() => parseConfig({ DATABASE_URL: 'mysql://x' })).toThrow(/DATABASE_URL/);
+	});
+});
+
+describe('getConfig', () => {
+	it('returns the same object on repeated calls', () => {
+		expect(getConfig()).toBe(getConfig());
 	});
 });

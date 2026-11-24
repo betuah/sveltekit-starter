@@ -20,4 +20,9 @@ export function parseConfig(env: Record<string, string | undefined>): Config {
 	return { nodeEnv: result.data.NODE_ENV, databaseUrl: result.data.DATABASE_URL };
 }
 
-export const config: Config = parseConfig(process.env);
+let cached: Config | undefined;
+
+// Lazy so `vite build` needs no secrets; the init hook calls it to fail fast at startup.
+export function getConfig(): Config {
+	return (cached ??= parseConfig(process.env));
+}

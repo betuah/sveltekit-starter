@@ -1,7 +1,7 @@
 import { drizzle, type PostgresJsDatabase } from 'drizzle-orm/postgres-js';
 import { sql } from 'drizzle-orm';
 import postgres from 'postgres';
-import { config } from '#lib/server/core/config.ts';
+import { getConfig } from '#lib/server/core/config.ts';
 
 // Later plans spread table modules into this object.
 export const schema = {};
@@ -35,4 +35,8 @@ export async function checkDb(executor: Executor, timeoutMs = 2000): Promise<boo
 	}
 }
 
-export const { db } = createDb(config.databaseUrl);
+let cached: Db | undefined;
+
+export function getDb(): Db {
+	return (cached ??= createDb(getConfig().databaseUrl).db);
+}
