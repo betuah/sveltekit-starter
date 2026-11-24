@@ -15,7 +15,7 @@
 		"build": "bun --bun vite build",
 		"preview": "bun --bun vite preview",
 		"start": "bun ./build",
-		"prepare": "lefthook install || true",
+		"prepare": "svelte-kit sync || echo '' && (lefthook install || true)",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --check . && eslint .",
