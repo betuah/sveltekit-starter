@@ -19,7 +19,8 @@ async function main(): Promise<number> {
 		);
 		return 1;
 	} finally {
-		await conn?.close();
+		// A failing close must not hide the seed result printed above.
+		await conn?.close().catch(() => {});
 	}
 }
 

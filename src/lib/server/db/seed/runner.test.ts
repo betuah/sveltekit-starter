@@ -17,29 +17,25 @@ afterAll(async () => {
 });
 
 describe('runSeed', () => {
-	it('runs steps in order inside one transaction', async () => {
-		const calls: string[] = [];
+	it('logs each step before running it, all inside one transaction', async () => {
+		const events: string[] = [];
+		const executors: Executor[] = [];
+		const record = (name: string) => async (tx: Executor) => {
+			events.push(`run ${name}`);
+			executors.push(tx);
+			await tx.execute(sql`insert into seed_probe values (${name}) on conflict do nothing`);
+		};
 		await runSeed(
 			db,
 			[
-				{
-					name: 'a',
-					run: async (tx) => {
-						calls.push('a');
-						await tx.execute(sql`insert into seed_probe values ('a') on conflict do nothing`);
-					}
-				},
-				{
-					name: 'b',
-					run: () => {
-						calls.push('b');
-						return Promise.resolve();
-					}
-				}
+				{ name: 'a', run: record('a') },
+				{ name: 'b', run: record('b') }
 			],
-			() => {}
+			(msg) => events.push(msg)
 		);
-		expect(calls).toEqual(['a', 'b']);
+		expect(events).toEqual(['seed: a', 'run a', 'seed: b', 'run b']);
+		expect(executors[0]).not.toBe(db);
+		expect(executors[0]).toBe(executors[1]);
 	});
 
 	it('rolls back everything when a step fails', async () => {
