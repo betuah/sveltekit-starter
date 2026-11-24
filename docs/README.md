@@ -25,7 +25,7 @@ Mulai dari [getting-started](getting-started.md). Halaman bertanda "(menyusul di
 
 ## Operasional
 
-- operations/deployment.md (menyusul di Fase 6)
+- operations/deployment.md (menyusul di Fase 7)
 - operations/security.md (menyusul di Fase 6)
 
 ## Kontribusi

@@ -14,7 +14,7 @@ Pakai SvelteKit 3 dengan Svelte 5 (runes) dan TypeScript strict, dijalankan dan 
 
 ## Konsekuensi
 
-- Bun 1.4 atau lebih baru wajib, tercatat di `engines` pada `package.json`. Semua script memakai `bun --bun` supaya Vite dan Vitest benar-benar jalan di runtime Bun, bukan Node.
+- Bun 1.4 atau lebih baru wajib, tercatat di `engines` pada `package.json`. Script `dev`, `build`, dan `test:unit` memakai `bun --bun` supaya Vite dan Vitest jalan di runtime Bun. Node.js 22 atau lebih baru disarankan untuk tooling yang binary-nya ber-shebang node (`check`, `lint`, `db:generate`, `db:studio`, `test:e2e`/Playwright).
 - TypeScript dipin ke 6.0.3 karena TypeScript 7 belum jalan dengan SvelteKit 3. Vitest dipin ke 5.1.0 karena 5.1.1 crash di Bun 1.4.4. Naikkan keduanya setelah masalahnya hilang.
 - Pindah ke Node tinggal satu perubahan di `vite.config.ts`: ganti import menjadi `@sveltejs/adapter-node`, lalu sesuaikan perintah start dan image Docker.
 - Env dibaca lewat satu modul, `src/lib/server/core/config.ts`, bukan `$env/*`, dan divalidasi saat start.

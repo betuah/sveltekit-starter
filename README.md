@@ -25,13 +25,13 @@ Semua dokumentasi ada di [docs/](docs/README.md). Mau berkontribusi? Baca [CONTR
 
 ## Script
 
-| Perintah                                  | Fungsi                                     |
-| ----------------------------------------- | ------------------------------------------ |
-| `bun run dev`                             | Dev server di port 5173                    |
-| `bun run build`                           | Build production ke `build/`, tanpa secret |
-| `bun run start`                           | Jalankan hasil build (`bun ./build`)       |
-| `bun run check`                           | `svelte-check`                             |
-| `bun run lint` / `bun run format`         | Cek / rapikan dengan Prettier dan ESLint   |
-| `bun run db:generate` / `db:migrate`      | Buat / jalankan migration                  |
-| `bun run db:seed` / `db:studio`           | Isi data awal / buka Drizzle Studio        |
-| `bun run test:unit` / `test:e2e` / `test` | Vitest / Playwright / keduanya             |
+| Perintah                                  | Fungsi                                       |
+| ----------------------------------------- | -------------------------------------------- |
+| `bun run dev`                             | Dev server di port 5173                      |
+| `bun run build`                           | Build production ke `build/`, tanpa secret   |
+| `bun run start`                           | Jalankan hasil build (port 3000)             |
+| `bun run check`                           | `svelte-check`                               |
+| `bun run lint` / `bun run format`         | Cek (Prettier + ESLint) / rapikan (Prettier) |
+| `bun run db:generate` / `db:migrate`      | Buat / jalankan migration                    |
+| `bun run db:seed` / `db:studio`           | Isi data awal / buka Drizzle Studio          |
+| `bun run test:unit` / `test:e2e` / `test` | Vitest / Playwright / keduanya               |

@@ -2,7 +2,7 @@
 
 Di akhir halaman ini aplikasi jalan di `http://localhost:5173` dan `/healthz` menjawab `ok`.
 
-Kamu butuh [Bun](https://bun.sh) 1.4 atau lebih baru dan Docker dengan Compose v2. Semua script memakai `bun --bun`, jadi Node tidak diperlukan.
+Kamu butuh [Bun](https://bun.sh) 1.4 atau lebih baru dan Docker dengan Compose v2. Bun wajib. Node.js 22 atau lebih baru disarankan untuk tooling (`check`, `lint`, `db:generate`, `db:studio`) dan e2e (Playwright), karena binary-nya memakai shebang node.
 
 ## Langkah
 
@@ -64,10 +64,10 @@ Ada dua jalan keluar. Hentikan container lain itu (`docker stop <nama>`), atau g
 
 ```yaml
 ports:
-  - '5433:5432'
+  - '127.0.0.1:5433:5432'
 ```
 
-```
+```env
 DATABASE_URL=postgres://app:app@localhost:5433/app
 TEST_DATABASE_URL=postgres://app:app@localhost:5433/app_test
 ```

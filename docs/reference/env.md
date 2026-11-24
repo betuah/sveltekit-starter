@@ -2,7 +2,7 @@
 
 Semua key di `.env.example`. Aplikasi membaca env hanya lewat `src/lib/server/core/config.ts`, dan memvalidasinya saat start dengan Zod. Saat ini hanya `DATABASE_URL` dan `NODE_ENV` yang divalidasi di sana. Key S3 dan SMTP dipakai service lokal dan akan dibaca kode di fase berikutnya.
 
-| Key | Fungsi | Default | Wajib kapan |
+| Key | Fungsi | Contoh (`.env.example`) | Wajib kapan |
 | --- | --- | --- | --- |
 | `DATABASE_URL` | Koneksi PostgreSQL untuk aplikasi, migration, dan seed. Harus berskema `postgres://` atau `postgresql://` | `postgres://app:app@localhost:5432/app` | Selalu. Server menolak start tanpa ini |
 | `TEST_DATABASE_URL` | Database untuk test (`app_test`) | `postgres://app:app@localhost:5432/app_test` | Saat menjalankan test |
@@ -11,13 +11,14 @@ Semua key di `.env.example`. Aplikasi membaca env hanya lewat `src/lib/server/co
 | `S3_SECRET_ACCESS_KEY` | Secret key S3. Sama seperti di atas | `devsecretkey` | Sama seperti di atas |
 | `SMTP_HOST` | Host SMTP untuk email | `localhost` (Mailpit) | Saat fitur email dipakai |
 | `SMTP_PORT` | Port SMTP | `1025` (Mailpit) | Saat fitur email dipakai |
-| `ORIGIN` | URL publik aplikasi | `http://localhost:5173` | Production atau di belakang proxy. Tanpa ini form POST ditolak CSRF check |
+| `ORIGIN` | URL publik aplikasi. Hanya dipakai server hasil build (`bun run start` / Docker); `vite dev` mengabaikannya | `http://localhost:3000` | Production atau di belakang proxy. Tanpa ini form POST ditolak CSRF check |
+
+`NODE_ENV` (`development`, `test`, atau `production`; default `development`; Dockerfile mengisinya `production`) dibaca `config.ts`, tidak wajib.
 
 Variabel di bawah tidak ada di `.env.example`, tetapi dibaca `@sveltejs/adapter-bun` saat runtime:
 
 | Key | Fungsi | Wajib kapan |
 | --- | --- | --- |
-| `NODE_ENV` | `development`, `test`, atau `production`. Default `development`. Dockerfile mengisinya `production` | Tidak wajib |
 | `PROTOCOL_HEADER`, `HOST_HEADER`, `PORT_HEADER` | Nama header proxy yang membawa protokol, host, dan port asli. Alternatif dari `ORIGIN` | Di belakang proxy tepercaya yang meneruskan TLS |
 | `ADDRESS_HEADER`, `XFF_DEPTH` | Header dan kedalaman untuk membaca IP klien | Di belakang proxy, kalau IP klien dibutuhkan |
 | `PORT` | Port server production. Default `3000` | Tidak wajib |
