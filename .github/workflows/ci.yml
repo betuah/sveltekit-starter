@@ -10,7 +10,8 @@ env:
 
 concurrency:
   group: ci-${{ github.ref }}
-  cancel-in-progress: true
+  # Only PR runs are superseded; every push to main keeps its own result.
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 permissions:
   contents: read
@@ -38,7 +39,7 @@ jobs:
     timeout-minutes: 15
     services:
       postgres:
-        image: postgres:18-alpine
+        image: postgres:18.7-alpine
         env:
           POSTGRES_USER: app
           POSTGRES_PASSWORD: app
@@ -105,19 +106,14 @@ jobs:
           restore-keys: bun-${{ runner.os }}-
       - run: bun install --frozen-lockfile
       - run: bun run build
-      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
-        with:
-          name: build
-          path: build/
-          if-no-files-found: error
 
+  # Builds on its own through Playwright's webServer, so it runs in parallel with `build`.
   e2e:
-    needs: build
     runs-on: ubuntu-latest
     timeout-minutes: 15
     services:
       postgres:
-        image: postgres:18-alpine
+        image: postgres:18.7-alpine
         env:
           POSTGRES_USER: app
           POSTGRES_PASSWORD: app
