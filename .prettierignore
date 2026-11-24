@@ -11,3 +11,5 @@ bun.lockb
 # Project docs (not formatted by Prettier)
 docs/
 .superpowers/
+.impeccable/
+drizzle/migrations/meta/
