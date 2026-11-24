@@ -9,6 +9,7 @@
 		"vite.config.ts",
 		"drizzle.config.ts",
 		"tests",
+		"e2e",
 		"prettier.config.js",
 		"eslint.config.js",
 		"commitlint.config.js",
