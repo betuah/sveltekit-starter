@@ -51,6 +51,7 @@ Scope adalah nama modul atau area. Daftar yang diizinkan commitlint (peringatan,
 - Header, yaitu baris pertama, maksimal 72 karakter. Lebih dari itu commitlint menolak.
 - Satu commit berisi satu perubahan logis.
 - Kaitkan issue di footer: `Refs #12` atau `Closes #12`.
+- Commit hanya atas nama author. Jangan tambahkan `Co-Authored-By` untuk tool AI atau baris `Generated with Claude Code`. Hook `commit-msg` menolaknya, dan `.claude/settings.json` mematikan baris itu dari Claude Code.
 - Pesan commit berbahasa Inggris.
 
 ## Contoh
