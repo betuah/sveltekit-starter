@@ -1,8 +1,8 @@
 import { ConfigError, getConfig } from '#lib/server/core/config.ts';
 import { createDb } from '#lib/server/core/db.ts';
-import { runSeed, type SeedStep } from '#lib/server/db/seed/runner.ts';
+import { runSeed, type SeedStep } from './runner.ts';
 
-// Fase 3 fills this list.
+// Seeders run in this order; add new ones here.
 const steps: SeedStep[] = [];
 
 async function main(): Promise<number> {

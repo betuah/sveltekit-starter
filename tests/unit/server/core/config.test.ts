@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { ConfigError, getConfig, parseConfig } from './config.ts';
+import { ConfigError, getConfig, parseConfig } from '#lib/server/core/config.ts';
 
 describe('parseConfig', () => {
 	it('parses a valid env', () => {

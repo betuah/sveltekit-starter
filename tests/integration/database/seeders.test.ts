@@ -1,7 +1,7 @@
 import { afterAll, beforeAll, beforeEach, describe, expect, it } from 'vitest';
 import { sql } from 'drizzle-orm';
 import { createDb, type Executor } from '#lib/server/core/db.ts';
-import { runSeed } from '#lib/server/db/seed/runner.ts';
+import { runSeed } from '#database/seeders/runner.ts';
 
 const { db, close } = createDb(process.env.TEST_DATABASE_URL!);
 

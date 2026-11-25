@@ -18,16 +18,19 @@ export default defineConfig(({ mode }) => ({
 	],
 	test: {
 		env: loadEnv(mode, process.cwd(), ''),
-		globalSetup: ['tests/setup/global-setup.ts'],
 		expect: { requireAssertions: true },
 		projects: [
 			{
 				extends: './vite.config.ts',
+				test: { name: 'unit', environment: 'node', include: ['tests/unit/**/*.test.ts'] }
+			},
+			{
+				extends: './vite.config.ts',
 				test: {
-					name: 'server',
+					name: 'integration',
 					environment: 'node',
-					include: ['src/**/*.{test,spec}.{js,ts}'],
-					exclude: ['src/**/*.svelte.{test,spec}.{js,ts}']
+					include: ['tests/integration/**/*.test.ts'],
+					globalSetup: ['tests/integration/global-setup.ts']
 				}
 			}
 		]

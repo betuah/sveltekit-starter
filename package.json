@@ -8,7 +8,8 @@
 	"type": "module",
 	"imports": {
 		"#lib": "./src/lib/index.ts",
-		"#lib/*": "./src/lib/*"
+		"#lib/*": "./src/lib/*",
+		"#database/*": "./database/*"
 	},
 	"scripts": {
 		"dev": "bun --bun vite dev",
@@ -23,9 +24,10 @@
 		"db:generate": "bun --bun drizzle-kit generate",
 		"db:migrate": "bun --bun drizzle-kit migrate",
 		"db:studio": "bun --bun drizzle-kit studio",
-		"db:seed": "bun src/lib/server/db/seed/index.ts",
-		"test:unit": "bun --bun vitest",
-		"test": "bun run test:unit -- --run && bun run test:e2e",
+		"db:seed": "bun database/seeders/index.ts",
+		"test:unit": "bun --bun vitest --project unit",
+		"test:integration": "bun --bun vitest --project integration",
+		"test": "bun --bun vitest --run && bun run test:e2e",
 		"test:e2e": "playwright install chromium && playwright test"
 	},
 	"devDependencies": {

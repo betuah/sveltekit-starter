@@ -12,4 +12,4 @@ bun.lockb
 docs/
 .superpowers/
 .impeccable/
-drizzle/migrations/meta/
+database/migrations/meta/

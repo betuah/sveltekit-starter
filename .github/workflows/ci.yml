@@ -69,6 +69,7 @@ jobs:
       - run: bun run db:migrate
       - run: bun run db:seed
       - run: bun run test:unit -- --run
+      - run: bun run test:integration -- --run
 
   migrations:
     runs-on: ubuntu-latest
@@ -88,8 +89,8 @@ jobs:
       - run: bun run db:generate
       - name: Fail if schema changed without a committed migration
         run: |
-          git diff --exit-code drizzle/
-          test -z "$(git status --porcelain drizzle/)"
+          git diff --exit-code database/migrations/
+          test -z "$(git status --porcelain database/migrations/)"
 
   build:
     runs-on: ubuntu-latest

@@ -10,7 +10,7 @@ export default async function setup() {
 	if (!url) throw new Error('TEST_DATABASE_URL is not set');
 	const client = postgres(url, { max: 1 });
 	try {
-		await migrate(drizzle(client), { migrationsFolder: './drizzle/migrations' });
+		await migrate(drizzle(client), { migrationsFolder: './database/migrations' });
 	} finally {
 		await client.end();
 	}

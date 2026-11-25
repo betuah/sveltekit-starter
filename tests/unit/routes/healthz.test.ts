@@ -3,7 +3,7 @@ import { describe, expect, it, vi } from 'vitest';
 const db = vi.hoisted(() => ({ checkDb: vi.fn(), getDb: vi.fn() }));
 vi.mock('#lib/server/core/db.ts', () => db);
 
-const { GET } = await import('./+server.ts');
+const { GET } = await import('../../../src/routes/healthz/+server.ts');
 
 describe('GET /healthz', () => {
 	it('returns 200 when the database answers', async () => {

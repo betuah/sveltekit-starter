@@ -21,7 +21,7 @@ COPY package.json bun.lock ./
 # its tools are absent with --production.
 RUN bun install --production --frozen-lockfile --ignore-scripts
 COPY --from=build /app/build ./build
-COPY drizzle ./drizzle
+COPY database/migrations ./database/migrations
 USER bun
 EXPOSE 3000
 HEALTHCHECK --interval=30s --timeout=3s --start-period=10s --retries=3 \
