@@ -22,7 +22,9 @@ export default {
 				'design',
 				'storage',
 				'email',
-				'security'
+				'security',
+				'i18n',
+				'test'
 			]
 		],
 		'header-max-length': [2, 'always', 72]

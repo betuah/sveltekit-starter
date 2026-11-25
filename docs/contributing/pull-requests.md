@@ -8,7 +8,7 @@ Buat branch dari `main`, commit, buka PR, tunggu CI hijau, lalu squash merge.
 
 ## Judul PR
 
-Setiap PR di-squash menjadi satu commit, dan judul PR menjadi subject commit itu. Karena itu judul harus berupa commit konvensional, misalnya `feat(users): add csv export`. CI (`amannn/action-semantic-pull-request`) menolak judul yang salah format. Versi (dan changelog, setelah Fase 7) dihitung dari judul ini, jadi tambahkan `!` kalau PR membawa breaking change ([daftarnya di sini](versioning.md)).
+Setiap PR di-squash menjadi satu commit, dan judul PR menjadi subject commit itu. Karena itu judul harus berupa commit konvensional, misalnya `feat(users): add csv export`. CI (`amannn/action-semantic-pull-request`) menolak judul yang salah format. Versi dan changelog dihitung dari judul ini, jadi tambahkan `!` kalau PR membawa breaking change ([daftarnya di sini](versioning.md)).
 
 ## Template
 
@@ -29,7 +29,7 @@ bun run check
 bun run test:unit -- --run
 ```
 
-CI menjalankan job `quality`, `test`, `migrations`, `build`, `e2e`, dan `commits`. Job `migrations` gagal kalau schema berubah tanpa migration yang ikut di-commit. Jalankan `bun run db:generate` dan commit hasilnya di `drizzle/`.
+CI menjalankan job `quality`, `test`, `migrations`, `build`, `e2e`, dan `commits`. Job `migrations` gagal kalau schema berubah tanpa migration yang ikut di-commit. Jalankan `bun run db:generate` dan commit hasilnya di `database/migrations/`.
 
 ## Merge
 

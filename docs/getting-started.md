@@ -49,7 +49,7 @@ Login console RustFS memakai `S3_ACCESS_KEY_ID` dan `S3_SECRET_ACCESS_KEY` dari 
 
 ## Test
 
-`bun run test:unit -- --run` memakai database `app_test` lewat `TEST_DATABASE_URL`. `bun run test:e2e` menjalankan Playwright.
+Semua test ada di `tests/`. `bun run test:unit -- --run` tidak butuh database. `bun run test:integration -- --run` memakai database `app_test` lewat `TEST_DATABASE_URL` dan menjalankan migration ke sana dulu. `bun run test:e2e` menjalankan Playwright terhadap hasil build.
 
 ## Kalau gagal
 

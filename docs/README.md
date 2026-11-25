@@ -1,6 +1,6 @@
 # Dokumentasi
 
-Mulai dari [getting-started](getting-started.md). Halaman bertanda "(menyusul di Fase N)" belum ditulis.
+Mulai dari [getting-started](getting-started.md).
 
 ## Panduan awal
 
@@ -9,24 +9,6 @@ Mulai dari [getting-started](getting-started.md). Halaman bertanda "(menyusul di
 ## Referensi
 
 - [reference/env.md](reference/env.md): semua variabel environment
-- reference/permissions.md (menyusul di Fase 3)
-- reference/api.md (menyusul di Fase 4)
-- reference/design-system.md (menyusul di Fase 5)
-
-## Panduan
-
-- architecture.md (menyusul di Fase 2)
-- guides/add-a-module.md (menyusul di Fase 3)
-- guides/add-a-permission.md (menyusul di Fase 3)
-- guides/add-a-component.md (menyusul di Fase 5)
-- guides/add-an-email-template.md (menyusul di Fase 4)
-- guides/configure-auth.md (menyusul di Fase 2)
-- guides/backend-integration.md (menyusul di Fase 4)
-
-## Operasional
-
-- operations/deployment.md (menyusul di Fase 7)
-- operations/security.md (menyusul di Fase 6)
 
 ## Kontribusi
 

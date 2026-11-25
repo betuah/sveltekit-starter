@@ -1,6 +1,6 @@
 # Versioning
 
-Proyek ini memakai [Semantic Versioning](https://semver.org): `MAJOR.MINOR.PATCH`. Otomatisasi rilis dengan release-please akan diaktifkan di Fase 7. Sampai saat itu versi di `package.json` dan tag dinaikkan dengan tangan mengikuti aturan di bawah.
+Proyek ini memakai [Semantic Versioning](https://semver.org): `MAJOR.MINOR.PATCH`. Versi ditentukan dari commit sejak rilis terakhir, mengikuti aturan di bawah.
 
 ## Dari commit ke versi
 
@@ -34,7 +34,7 @@ Mulai dari versi `1.2.3`:
 | `feat(api)!: rename /users to /accounts` | `2.0.0` |
 | `refactor(auth): split session helpers`, `ci: pin bun` | tetap `1.2.3` |
 
-## Fase 0.x
+## Versi 0.x
 
 Sebelum `1.0.0`, perubahan breaking menaikkan MINOR, bukan MAJOR. Dari `0.4.1`: `feat!` menghasilkan `0.5.0`, `feat` juga `0.5.0`, `fix` menghasilkan `0.4.2`. Versi `1.0.0` dirilis dengan sengaja saat API dianggap stabil.
 
@@ -42,6 +42,10 @@ Sebelum `1.0.0`, perubahan breaking menaikkan MINOR, bukan MAJOR. Dari `0.4.1`: 
 
 Versi seperti `1.2.0-rc.1` dipakai untuk kandidat rilis. Urutannya lebih rendah dari `1.2.0`.
 
-## Changelog dan tag
+## Cara rilis
 
-Mulai Fase 7, release-please membuka PR "release" yang berisi perubahan `CHANGELOG.md` dan kenaikan `version` di `package.json`. Saat PR itu di-merge, ia membuat tag `vX.Y.Z` dan GitHub Release. Entri changelog diambil dari subject commit. Sebelum itu `CHANGELOG.md` tidak dibuat otomatis. Aturan penulisan ada di [commit-convention](commit-convention.md).
+1. Lihat commit sejak tag terakhir: `git log $(git describe --tags --abbrev=0)..HEAD --oneline`. Tentukan versi baru dengan tabel di atas.
+2. Naikkan `version` di `package.json` dan tambahkan entri di `CHANGELOG.md`. Satu baris per commit `feat`, `fix`, `perf`, dan breaking change, diambil dari subject commit.
+3. Commit dengan `chore(release): vX.Y.Z`, lalu buat tag: `git tag vX.Y.Z && git push --follow-tags`.
+
+Subject commit langsung menjadi isi changelog, jadi tulis sesuai [commit-convention](commit-convention.md).

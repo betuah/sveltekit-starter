@@ -1,6 +1,6 @@
 # Konvensi commit
 
-Setelah halaman ini kamu bisa menulis commit yang lolos commitlint dan nanti masuk ke changelog dengan benar (otomatis mulai Fase 7). Hook Lefthook (`commit-msg`) menjalankan commitlint dengan `@commitlint/config-conventional` di setiap commit. CI mengecek ulang semua commit di PR.
+Halaman ini menjelaskan cara menulis commit yang lolos commitlint dan bisa dipakai untuk menentukan versi dan changelog. Hook Lefthook (`commit-msg`) menjalankan commitlint dengan `@commitlint/config-conventional` di setiap commit. CI mengecek ulang semua commit di PR.
 
 ## Format
 
@@ -43,7 +43,7 @@ Tanda `!` atau footer `BREAKING CHANGE:` pada type apa pun menaikkan MAJOR. Liha
 
 ## Scope
 
-Scope adalah nama modul atau area. Daftar yang diizinkan commitlint (peringatan, bukan error, kalau di luar daftar): `repo`, `config`, `db`, `ci`, `docker`, `docs`, `deps`, `auth`, `rbac`, `users`, `roles`, `api`, `ui`, `design`, `storage`, `email`, `security`. Daftarnya ada di `commitlint.config.js`.
+Scope adalah nama modul atau area. Daftar yang diizinkan commitlint (peringatan, bukan error, kalau di luar daftar): `repo`, `config`, `db`, `ci`, `docker`, `docs`, `deps`, `auth`, `rbac`, `users`, `roles`, `api`, `ui`, `design`, `storage`, `email`, `security`, `i18n`, `test`. Daftarnya ada di `commitlint.config.js`.
 
 ## Aturan
 

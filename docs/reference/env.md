@@ -1,6 +1,6 @@
 # Referensi env
 
-Semua key di `.env.example`. Aplikasi membaca env hanya lewat `src/lib/server/core/config.ts`, dan memvalidasinya saat start dengan Zod. Saat ini hanya `DATABASE_URL` dan `NODE_ENV` yang divalidasi di sana. Key S3 dan SMTP dipakai service lokal dan akan dibaca kode di fase berikutnya.
+Semua key di `.env.example`. Aplikasi membaca env hanya lewat `src/lib/server/core/config.ts`, dan memvalidasinya saat start dengan Zod. Saat ini hanya `DATABASE_URL` dan `NODE_ENV` yang divalidasi di sana. Key S3 dan SMTP saat ini hanya dipakai service lokal di docker compose.
 
 | Key | Fungsi | Contoh (`.env.example`) | Wajib kapan |
 | --- | --- | --- | --- |
