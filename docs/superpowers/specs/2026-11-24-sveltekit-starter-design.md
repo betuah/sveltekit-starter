@@ -399,12 +399,12 @@ src/lib/i18n/
   locales/
     id/  common.json  landing_page.json  auth.json  admin.json  account.json  validation.json  email.json
     en/  (same files)
-  index.ts            t(), current locale, list of locales, localized href helper
+  index.ts            re-exports Paraglide's m, current locale, list of locales, localized href helper
 ```
 
-- Keys are namespaced by file: `t('landing_page.hero.title')`. Keys are typed so a typo fails `check`.
+- Each file has one top-level key equal to its name, so keys are namespaced by file: `m['landing_page.hero.title']()`. Paraglide generates typed functions, so a typo fails `check`.
 - A unit test fails when a key exists in `id` but not in another locale.
-- Library is left to the builder: Paraglide JS if it can load one file per domain, otherwise a small loader over `import.meta.glob`. Either way the file layout above is fixed.
+- Library: Paraglide JS 3 with the message-format plugin's array `pathPattern` (one entry per domain file). Verified 2026-11-25 that nested keys compile to `m['a.b.c']`.
 - Emails render in the recipient's locale (stored on the user, default `id`).
 
 ## 14. Reusable pieces
