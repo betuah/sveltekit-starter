@@ -1,0 +1,17 @@
+pre-commit:
+  parallel: true
+  commands:
+    prettier:
+      glob: '*.{ts,js,svelte,json,md,css}'
+      run: bunx prettier --check {staged_files}
+    eslint:
+      glob: '*.{ts,js,svelte}'
+      run: bunx eslint {staged_files}
+
+commit-msg:
+  commands:
+    commitlint:
+      run: bunx commitlint --edit {1}
+    no-ai-attribution:
+      # commit hanya atas nama author manusia
+      run: "! grep -qiE '^co-authored-by:.*(claude|anthropic)|generated with .*claude' {1} || { echo 'Hapus baris Co-Authored-By Claude / Generated with Claude Code dari pesan commit'; exit 1; }"

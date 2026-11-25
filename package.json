@@ -1,0 +1,65 @@
+{
+	"name": "sveltekit-starter",
+	"version": "0.0.1",
+	"private": true,
+	"engines": {
+		"bun": ">=1.4.0"
+	},
+	"type": "module",
+	"imports": {
+		"#lib": "./src/lib/index.ts",
+		"#lib/*": "./src/lib/*",
+		"#database/*": "./database/*"
+	},
+	"scripts": {
+		"dev": "bun --bun vite dev",
+		"build": "bun --bun vite build",
+		"preview": "bun --bun vite preview",
+		"start": "bun ./build",
+		"prepare": "(svelte-kit sync || echo '') && (lefthook install || true)",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"lint": "prettier --check . && eslint .",
+		"format": "prettier --write .",
+		"db:generate": "bun --bun drizzle-kit generate",
+		"db:migrate": "bun --bun drizzle-kit migrate",
+		"db:studio": "bun --bun drizzle-kit studio",
+		"db:seed": "bun database/seeders/index.ts",
+		"test:unit": "bun --bun vitest --project unit",
+		"test:integration": "bun --bun vitest --project integration",
+		"test": "bun --bun vitest --run && bun run test:e2e",
+		"test:e2e": "playwright install chromium && playwright test"
+	},
+	"devDependencies": {
+		"@commitlint/cli": "21.2.4",
+		"@commitlint/config-conventional": "21.2.4",
+		"@eslint/js": "10.0.1",
+		"@playwright/test": "1.65.1",
+		"@sveltejs/adapter-bun": "1.0.2",
+		"@sveltejs/kit": "3.4.0",
+		"@sveltejs/vite-plugin-svelte": "7.3.2",
+		"@tailwindcss/vite": "4.3.5",
+		"@types/node": "26.6.6",
+		"drizzle-kit": "0.31.11",
+		"eslint": "10.15.0",
+		"eslint-config-prettier": "10.1.8",
+		"eslint-plugin-svelte": "3.24.1",
+		"globals": "17.14.0",
+		"lefthook": "2.2.2",
+		"prettier": "3.10.1",
+		"prettier-plugin-svelte": "4.2.0",
+		"prettier-plugin-tailwindcss": "0.8.1",
+		"svelte": "5.59.1",
+		"svelte-check": "4.7.8",
+		"tailwindcss": "4.3.5",
+		"typescript": "6.0.3",
+		"typescript-eslint": "8.74.0",
+		"vite": "8.3.8",
+		"vitest": "5.1.0"
+	},
+	"dependencies": {
+		"drizzle-orm": "0.45.4",
+		"postgres": "4.1.1",
+		"zod": "4.6.7"
+	}
+}
